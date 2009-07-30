@@ -18,7 +18,7 @@ def service(*results):
 
         class Result(tuple):
             def __repr__(self):
-                return "(%s)" % ", ".join(map("%s: %s".__mod__, zip(results, self)))
+                return "(%s)" % ", ".join("%s: %s" % d for d in zip(results, self))
         for n, typ in enumerate(results):
             setattr(Result, typ, property(operator.itemgetter(n)))
         Result.__name__ = "%sResult" % name

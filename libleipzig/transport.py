@@ -52,7 +52,7 @@ def service(*result_types):
             if not response.result:
                 return
             for e in response.result.dataVectors:
-                yield Result(e.dataRow)
+                yield Result(map(str, e.dataRow))
 
         return func
     return wrapper

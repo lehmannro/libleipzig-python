@@ -51,8 +51,9 @@ def service(*results):
             response = client.service.execute(request)
             if not response.result:
                 return
-            for e in response.result.dataVectors:
-                yield Result(map(str, e.dataRow))
+            # do not use yield to trigger function body immediately
+            return (Result(map(str, e.dataRow))
+                    for e in response.result.dataVectors)
 
         func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
             ", ".join(results)) + (func.__doc__ or '')

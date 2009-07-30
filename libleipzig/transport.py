@@ -7,7 +7,7 @@ import suds
 
 BASEURL = 'http://pcai055.informatik.uni-leipzig.de:8100/axis/services/%s?wsdl'
 
-def service(*result_types):
+def service(*results):
     def wrapper(f):
         name = f.__name__
         args, _, _, _ = inspect.getargspec(f)
@@ -18,8 +18,8 @@ def service(*result_types):
 
         class Result(tuple):
             def __repr__(self):
-                return "(%s)" % ", ".join(map("%s: %s".__mod__, zip(result_types, self)))
-        for n, typ in enumerate(result_types):
+                return "(%s)" % ", ".join(map("%s: %s".__mod__, zip(results, self)))
+        for n, typ in enumerate(results):
             setattr(Result, typ, property(operator.itemgetter(n)))
         Result.__name__ = "%sResult" % name
 
@@ -54,5 +54,7 @@ def service(*result_types):
             for e in response.result.dataVectors:
                 yield Result(map(str, e.dataRow))
 
+        func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
+            ", ".join(results)) + (func.__doc__ or '')
         return func
     return wrapper

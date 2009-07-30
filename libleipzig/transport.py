@@ -2,6 +2,7 @@
 
 import functools
 import inspect
+import operator
 import suds
 
 BASEURL = 'http://pcai055.informatik.uni-leipzig.de:8100/axis/services/%s?wsdl'
@@ -15,10 +16,18 @@ def service(*result_types):
         # this prefetches the WSDL on library load!
         client = suds.client.Client(BASEURL % name, transport=auth)
 
+        class Result(tuple):
+            def __repr__(self):
+                return "(%s)" % ", ".join(map("%s: %s".__mod__, zip(result_types, self)))
+        for n, typ in enumerate(result_types):
+            setattr(Result, typ, property(operator.itemgetter(n)))
+        Result.__name__ = "%sResult" % name
+
         @functools.wraps(f)
         def func(word, *vectors):
             if len(args) - 1 != len(vectors):
-                raise TypeError("service `%s' got %d arguments, expects %d (%s)" %
+                raise TypeError(
+                    "service `%s' got %d arguments, expects %d (%s)" %
                     (name, len(vectors)+1, len(args), ", ".join(args)))
 
             # assemble query to the SOAP service
@@ -38,9 +47,12 @@ def service(*result_types):
 
                 request.parameters.dataVectors.append(vector)
 
+            # fire query and construct result tuples
             response = client.service.execute(request)
+            if not response.result:
+                return
             for e in response.result.dataVectors:
-                yield dict(zip(result_types, e.dataRow))
+                yield Result(e.dataRow)
 
         return func
     return wrapper

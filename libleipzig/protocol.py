@@ -1,46 +1,32 @@
 # Copyright (C) 2009 Robert Lehmann
 
-services = {
-    'Baseform': (
-        ['Wort'],
-        ['Grundform', 'Wortart']),
-    'Cooccurrences': (
-        ['Wort', 'Mindestsignifikanz', 'Limit'],
-        ['Wort', 'Kookkurrenz', 'Signifikanz']),
-    'Sentences': (
-        ['Wort', 'Limit'],
-        ['Satz']),
-    'RightNeighbours': (
-        ['Wort', 'Limit'],
-        ['Wort', 'Nachbar', 'Signifikanz']),
-    'LeftNeighbours': (
-        ['Wort', 'Limit'],
-        ['Nachbar', 'Wort', 'Signifikanz']),
-    'Frequencies': (
-        ['Wort'],
-        ['Anzahl', 'Frequenzklasse']),
-    'Synonyms': (
-        ['Wort', 'Limit'],
-        ['Synonym']),
-    'Thesaurus': (
-        ['Wort', 'Limit'],
-        ['Synonym']),
-    'Wordforms': (
-        ['Word', 'Limit'],
-        ['Form']),
-    'Similarity': (
-        ['Wort', 'Limit'],
-        ['Wort', 'Verwandter', 'Signifikanz']),
-    'LeftCollocationFinder': (
-        ['Wort', 'Wortart', 'Limit'],
-        ['Kollokation', 'Wortart', 'Wort']),
-    'RightCollocationFinder': (
-        ['Wort', 'Wortart', 'Limit'],
-        ['Wort', 'Kollokation', 'Wortart']),
-    'Sachgebiet': (
-        ['Wort'],
-        ['Sachgebiet']),
-    'Kreuzwortraetsel': (
-        ['Wort', 'Wortlaenge', 'Limit'],
-        ['Wort']),
-}
+from libleipzig.transport import service
+
+@service('Grundform', 'Wortart')
+def Baseform(Wort): pass
+@service('Wort', 'Kookkurrenz', 'Signifikanz')
+def Cooccurrences(Wort, Mindestsignifikanz, Limit): pass
+@service('Satz')
+def Sentences(Wort, Limit): pass
+@service('Wort', 'Nachbar', 'Signifikanz')
+def RightNeighbours(Wort, Limit): pass
+@service('Nachbar', 'Wort', 'Signifikanz')
+def LeftNeighbours(Wort, Limit): pass
+@service('Anzahl', 'Frequenzklasse')
+def Frequencies(Wort): pass
+@service('Synonym')
+def Synonyms(Wort, Limit): pass
+@service('Synonym')
+def Thesaurus(Wort, Limit): pass
+@service('Form')
+def Wordforms(Word, Limit): pass
+@service('Wort', 'Verwandter', 'Signifikanz')
+def Similarity(Wort, Limit): pass
+@service('Kollokation', 'Wortart', 'Wort')
+def LeftCollocationFinder(Wort, Wortart, Limit): pass
+@service('Wort', 'Kollokation', 'Wortart')
+def RightCollocationFinder(Wort, Wortart, Limit): pass
+@service('Sachgebiet')
+def Sachgebiet(Wort): pass
+@service('Wort')
+def Kreuzwortraetsel(Wort, Wortlaenge, Limit): pass

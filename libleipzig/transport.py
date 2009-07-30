@@ -1,58 +1,46 @@
 # Copyright (C) 2009 Robert Lehmann
 
+import functools
+import inspect
 import suds
-from libleipzig import protocol
 
 BASEURL = 'http://pcai055.informatik.uni-leipzig.de:8100/axis/services/%s?wsdl'
-_PUBLIC = suds.transport.http.HttpAuthenticated(
-          username='anonymous', password='anonymous')
 
-def request(service, *args, **kwargs):
-    """
+def service(*result_types):
+    def wrapper(f):
+        name = f.__name__
+        args, _, _, _ = inspect.getargspec(f)
+        auth = suds.transport.http.HttpAuthenticated(
+               username='anonymous', password='anonymous')
+        # this prefetches the WSDL on library load!
+        client = suds.client.Client(BASEURL % name, transport=auth)
 
-    :Parameters:
-    - `service`: the name of the executed SOAP method
-    - `word`: the term to look up
-    Depending on `service` there might be additional arguments expected.
+        @functools.wraps(f)
+        def func(word, *vectors):
+            if len(args) - 1 != len(vectors):
+                raise TypeError("service `%s' got %d arguments, expects %d (%s)" %
+                    (name, len(vectors)+1, len(args), ", ".join(args)))
 
-    :Keywords:
-    - `auth`: a tuple of auth information (username, password); anonymous
-      login if None.
+            # assemble query to the SOAP service
+            request = client.factory.create('RequestParameter')
+            request.corpus = 'de'
 
-    """
-    # determine service
-    if service not in protocol.services:
-        raise LookupError("service `%s' is not known" % service)
-    in_, out = protocol.services[service]
-    if len(in_) != len(args):
-        raise TypeError("service `%s' got %d arguments, expects %d (%s)" %
-            (service, len(args), len(in_), ", ".join(in_)))
+            for key, value in zip(args, (word,) + vectors):
+                vector = client.factory.create('ns0:DataVector')
 
-    # connect to the SOAP service
-    if 'auth' in kwargs:
-        auth = suds.transport.http.HttpAuthenticated(dict(zip(
-            ('username', 'password'), kwargs['auth'])))
-    else:
-        auth = _PUBLIC
-    client = suds.client.Client(BASEURL % service, transport=auth)
+                key_row = client.factory.create('ns0:dataRow')
+                key_row.value = key
+                vector.dataRow.append(key_row)
 
-    request = client.factory.create('RequestParameter')
-    request.corpus = 'de'
+                value_row = client.factory.create('ns0:dataRow')
+                value_row.value = value
+                vector.dataRow.append(value_row)
 
-    for key, value in zip(in_, args):
-        vector = client.factory.create('ns0:DataVector')
+                request.parameters.dataVectors.append(vector)
 
-        key_row = client.factory.create('ns0:dataRow')
-        key_row.value = key
-        vector.dataRow.append(key_row)
+            response = client.service.execute(request)
+            for e in response.result.dataVectors:
+                yield dict(zip(result_types, e.dataRow))
 
-        value_row = client.factory.create('ns0:dataRow')
-        value_row.value = value
-        vector.dataRow.append(value_row)
-
-        request.parameters.dataVectors.append(vector)
-    
-    response = client.service.execute(request)
-    print response
-    for e in response.result.dataVectors:
-        yield dict(zip(out, e.dataRow))
+        return func
+    return wrapper

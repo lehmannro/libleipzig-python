@@ -2,8 +2,7 @@
 
 __author__ = "Robert Lehmann <libleipzig@robertlehmann.de>"
 
-from libleipzig.transport import request
-from libleipzig.protocol import services
+from libleipzig.protocol import *
 
 if __name__ == '__main__':
-    print list(request('Baseform', 'Python'))
+    print list(Baseform('Python'))

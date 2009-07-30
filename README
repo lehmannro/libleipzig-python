@@ -1,12 +1,14 @@
 ``libleipzig`` -- wortschatz.uni-leipzig.de binding
 ===================================================
 
-**libleipzig-python** provides a wrapper to the SOAP API provided by
+**libleipzig-python** provides a wrapper to the web services provided by
 `Wortschatz Universität Leipzig`_.
 
-.. Wortschatz Universität Leipzig:: http://wortschatz.uni-leipzig.de/
+.. _Wortschatz Universität Leipzig: http://wortschatz.uni-leipzig.de/
 
 Dependencies
 ------------
 
-- suds 0.3.7 beta or higher, see https://fedorahosted.org/suds/#Resources
+- suds_ 0.3.7 beta or higher
+
+.. _suds: https://fedorahosted.org/suds/#Resources

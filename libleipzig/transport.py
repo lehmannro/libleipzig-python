@@ -6,6 +6,7 @@ import operator
 import suds
 
 BASEURL = 'http://pcai055.informatik.uni-leipzig.de:8100/axis/services/%s?wsdl'
+services = {}
 
 def service(*results):
     def wrapper(f):
@@ -16,7 +17,7 @@ def service(*results):
         # this prefetches the WSDL on library load!
         client = suds.client.Client(BASEURL % name, transport=auth)
 
-        class Result(tuple):
+        class Result(tuple): # poor man's namedtuple
             def __repr__(self):
                 return "(%s)" % ", ".join("%s: %s" % d for d in zip(results, self))
         for n, typ in enumerate(results):
@@ -57,5 +58,7 @@ def service(*results):
 
         func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
             ", ".join(results)) + (func.__doc__ or '')
+        services[name] = func
+
         return func
     return wrapper

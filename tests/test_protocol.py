@@ -1,5 +1,7 @@
 # Copyright (C) 2009 Robert Lehmann
 
+import os
+import tempfile
 import libleipzig
 
 def test_services():
@@ -10,3 +12,6 @@ def test_services():
     name, func = s.iteritems().next()
     assert isinstance(name, basestring)
     assert callable(func)
+
+def test_cache():
+    assert os.listdir(os.path.join(tempfile.gettempdir(), "suds"))

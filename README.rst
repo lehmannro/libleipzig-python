@@ -3,7 +3,7 @@
 =====================================================
 
 **libleipzig-python** provides a wrapper to the web services provided by the
-`Deutscher Wortschatz` project of the University of Leipzig. It currently
+`Deutscher Wortschatz`_ project of the University of Leipzig. It currently
 supports all level 1 service calls (unauthenticated). See the file
 ``libleipzig/protocol.py`` or ``libleipzig.services`` for details.
 

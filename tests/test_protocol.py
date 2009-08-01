@@ -5,10 +5,8 @@ import tempfile
 import libleipzig
 
 def test_services():
-    assert hasattr(libleipzig, 'services')
     s = libleipzig.services
-    assert isinstance(s, dict)
-    assert s
+    assert 'Baseform' in s
     name, func = s.iteritems().next()
     assert isinstance(name, basestring)
     assert callable(func)

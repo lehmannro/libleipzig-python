@@ -1,12 +1,9 @@
 # Copyright (C) 2009 Robert Lehmann
 
-from nose.tools import *
-from libleipzig import *
+from nose.tools import assert_raises
+from libleipzig import Baseform
 
 def test_doc():
-    assert hasattr(Baseform, '__doc__')
-    assert isinstance(Baseform.__doc__, basestring)
-
     lines = Baseform.__doc__.splitlines()
     assert len(lines) > 1 # automatically generated + service description
 

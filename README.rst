@@ -1,11 +1,11 @@
-=====================================================
+=================================================
  libleipzig -- wortschatz.uni-leipzig.de binding
-=====================================================
+=================================================
 
 **libleipzig-python** provides a wrapper to the web services provided by the
 `Deutscher Wortschatz`_ project of the University of Leipzig. It currently
 supports all level 1 service calls (unauthenticated). See the file
-``libleipzig/protocol.py`` or ``libleipzig.services`` for details.
+`libleipzig/protocol.py` or `libleipzig.services` for details.
 
 .. _Deutscher Wortschatz: http://wortschatz.uni-leipzig.de/
 
@@ -19,13 +19,19 @@ supports all level 1 service calls (unauthenticated). See the file
 [(Grundform: Schlange, Wortart: N), (Grundform: Schlangen, Wortart: S)]
 >>> r[0].Grundform
 'Schlange'
->>> print Baseform.__doc__.splitlines()[0]
-Baseform(Wort) -> Grundform, Wortart
+>>> help(Baseform) # doctest: +NORMALIZE_WHITESPACE
+Help on function Baseform in module libleipzig.protocol:
+Baseform(word, *vectors)
+    Baseform(Wort) -> Grundform, Wortart
+        Return the lemmatized (base) form.
 >>>
+
+.. **
 
 Dependencies
 ------------
 
+- Python 2.5 or higher
 - suds_ 0.3.7 beta or higher
 
 .. _suds: https://fedorahosted.org/suds/#Resources

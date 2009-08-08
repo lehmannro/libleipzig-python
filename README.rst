@@ -4,16 +4,22 @@
 
 **libleipzig-python** provides a wrapper to the web services provided by the
 `Deutscher Wortschatz`_ project of the University of Leipzig. It currently
-supports all level 1 service calls (unauthenticated). See the file
-`libleipzig/protocol.py` or `libleipzig.services` for details.
+supports all public service calls. These do not require authentication. See
+`libleipzig.services` or `./libleipzig/protocol.py` for details.
 
 .. _Deutscher Wortschatz: http://wortschatz.uni-leipzig.de/
 
-.. attention:: libleipzig prefetches all service interfaces on initial load.
+
+.. attention:: libleipzig prefetches *all* service interfaces on initial load.
    This process requires an Internet connection.
 
+   Subsequent ``import``\ s use indefinitely cached definitions (WSDL files).
 
->>> from libleipzig import *
+
+Example
+-------
+
+>>> from libleipzig import * # might take some time initially
 >>> r = list(Baseform("Schlangen"))
 >>> r
 [(Grundform: Schlange, Wortart: N), (Grundform: Schlangen, Wortart: S)]
@@ -31,7 +37,7 @@ Baseform(word, *vectors)
 Dependencies
 ------------
 
-- Python 2.5 or higher
-- suds_ 0.3.7 beta or higher
+- Python 2.5 or later 2.x releases
+- suds_ 0.3.7 beta (r537) or later
 
 .. _suds: https://fedorahosted.org/suds/#Resources

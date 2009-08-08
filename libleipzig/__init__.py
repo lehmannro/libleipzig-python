@@ -1,6 +1,6 @@
 # Copyright (C) 2009 Robert Lehmann
 
-__author__ = "Robert Lehmann <libleipzig@robertlehmann.de>"
+__version__ = "1.0"
 
 from libleipzig.protocol import *
 from libleipzig.transport import services

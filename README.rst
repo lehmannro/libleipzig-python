@@ -30,7 +30,7 @@ Example
 >>> r
 [(Grundform: Schlange, Wortart: N), (Grundform: Schlangen, Wortart: S)]
 >>> r[0].Grundform
-'Schlange'
+u'Schlange'
 >>> help(Baseform) # doctest: +NORMALIZE_WHITESPACE
 Help on function Baseform in module libleipzig.protocol:
 Baseform(word, *vectors)

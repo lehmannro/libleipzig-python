@@ -44,14 +44,16 @@ def service(*results):
             request.corpus = 'de'
 
             for key, value in zip(args, (word,) + vectors):
+                if isinstance(value, unicode):
+                    value = value.encode('latin-1') # blow up
                 vector = client.factory.create('ns0:DataVector')
 
                 key_row = client.factory.create('ns0:dataRow')
-                key_row.value = key
+                key_row.set(key)
                 vector.dataRow.append(key_row)
 
                 value_row = client.factory.create('ns0:dataRow')
-                value_row.value = value
+                value_row.set(value)
                 vector.dataRow.append(value_row)
 
                 request.parameters.dataVectors.append(vector)
@@ -61,7 +63,7 @@ def service(*results):
             if not response.result:
                 return []
             # do not use yield to trigger function body immediately
-            return (Result(map(str, e.dataRow))
+            return (Result(map(unicode, e.dataRow))
                     for e in response.result.dataVectors)
 
         func._doc = func.__doc__ or ''

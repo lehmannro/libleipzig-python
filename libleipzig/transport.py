@@ -64,8 +64,11 @@ def service(*results):
             return (Result(map(str, e.dataRow))
                     for e in response.result.dataVectors)
 
+        func._doc = func.__doc__ or ''
+        func._args = args
+        func._returns = results
         func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
-            ", ".join(results)) + (func.__doc__ or '')
+            ", ".join(results)) + func._doc
         services[name] = func
 
         return func

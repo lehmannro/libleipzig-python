@@ -6,6 +6,9 @@ from libleipzig import Baseform
 def test_doc():
     lines = Baseform.__doc__.splitlines()
     assert len(lines) > 1 # automatically generated + service description
+    assert len(Baseform._args) == 1
+    assert len(Baseform._returns) == 2
+    assert Baseform._doc
 
 def test_args():
     assert_raises(TypeError, Baseform)

@@ -13,14 +13,13 @@ dist:
 test:
 	@nosetests --with-doctest --doctest-extension=rst --detailed-errors
 
-docs: README.rst
-	@mkdir -p docs
-	rst2html README.rst docs/index.html
+docs: libleipzig/protocol.py README.rst
+	./gendocs | rst2html - manual.html
 
 clean:
 	find . -name '*.py[co]' -exec rm -f {} ';'
-	rm -rf docs/ build/ dist/
-	rm -f MANIFEST
+	rm -rf build/ dist/
+	rm -f MANIFEST manual.html
 
 distclean: clean
 	rm -rf /tmp/suds/

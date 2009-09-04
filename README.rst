@@ -4,11 +4,11 @@
 
 **libleipzig-python** provides a wrapper to the web services provided by the
 `Deutscher Wortschatz`_ project of the University of Leipzig. It currently
-supports all public service calls. These do not require authentication. See
-`libleipzig.services` or `./libleipzig/protocol.py` for details.
+supports all public service calls. These do not require authentication.
 
 .. _Deutscher Wortschatz: http://wortschatz.uni-leipzig.de/
 
+.. contents:: Table of Contents
 
 .. attention:: libleipzig prefetches *all* service interfaces on initial load.
    This process requires an Internet connection.

@@ -1,0 +1,29 @@
+#!/bin/sh
+# Copyright (C) 2009 Robert Lehmann
+
+cat README.rst - <<EOF
+
+Reference
+---------
+
+EOF
+
+python <<EOF
+from textwrap import dedent
+from libleipzig import services
+
+TEMPLATE = """
+%(label)s
+%(underline)s
+
+:Returns: %(returns)s
+
+%(doc)s
+"""
+
+for name, service in services.iteritems():
+    label = "%s(%s)" % (name, ", ".join(service._args))
+    print TEMPLATE % dict(label=label, underline="^" * len(label), name=name,
+                          returns=", ".join(service._returns),
+                          doc=dedent(service._doc))
+EOF

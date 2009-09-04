@@ -39,7 +39,7 @@ def Synonyms(Wort, Limit): """
     """
 @service('Synonym')
 def Thesaurus(Wort, Limit): """
-    Return synonyms (like the `Synonyms' service). However, this lemmatizes
+    Return synonyms (like the `Synonyms` service). However, this lemmatizes
     the input word first and thus returns more synonyms.
     """
 @service('Form')
@@ -56,14 +56,14 @@ def Similarity(Wort, Limit): """
 @service('Kollokation', 'Wortart', 'Wort')
 def LeftCollocationFinder(Wort, Wortart, Limit): """
     Attempt to find linguistic collocations that occur left to the word. The
-    `Wortart' parameter shall be either A, V, N, or S meaning adjective, verb,
+    `Wortart` parameter shall be either A, V, N, or S meaning adjective, verb,
     noun and stopword, respectively. The parameter restricts the type of words
     found.
     """
 @service('Wort', 'Kollokation', 'Wortart')
 def RightCollocationFinder(Wort, Wortart, Limit): """
     Attempt to find linguistic collocations that occur right to the word. The
-    `Wortart' parameter shall be either A, V, N, or S meaning adjective, verb,
+    `Wortart` parameter shall be either A, V, N, or S meaning adjective, verb,
     noun and stopword, respectively. The parameter restricts the type of words
     found.
     """
@@ -73,6 +73,6 @@ def Sachgebiet(Wort): """
     """
 @service('Wort')
 def Kreuzwortraetsel(Wort, Wortlaenge, Limit): """
-    Return words that match the pattern `Wort'. The percentage sign (%) acts
+    Return words that match the pattern `Wort`. The percentage sign (%) acts
     as a wildmask.
     """

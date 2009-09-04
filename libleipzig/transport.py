@@ -59,7 +59,7 @@ def service(*results):
             # fire query and construct result tuples
             response = client.service.execute(request)
             if not response.result:
-                return
+                return []
             # do not use yield to trigger function body immediately
             return (Result(map(str, e.dataRow))
                     for e in response.result.dataVectors)

@@ -6,8 +6,8 @@ import libleipzig
 
 def test_services():
     s = libleipzig.services
-    assert 'Baseform' in s
-    name, func = s.iteritems().next()
+    assert 'Baseform' in s # sanity check
+    name, func = s.iteritems().next() # str-callable mapping
     assert isinstance(name, basestring)
     assert callable(func)
 

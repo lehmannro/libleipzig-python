@@ -12,18 +12,21 @@ def service(*results):
     def wrapper(f):
         name = f.__name__
         args, _, _, _ = inspect.getargspec(f)
-        auth = suds.transport.http.HttpAuthenticated(
-               username='anonymous', password='anonymous')
-
-        # this prefetches the WSDL on library load!
-        client = suds.client.Client(BASEURL % name, transport=auth)
 
         # cache indefinitely as the service declarations seldom change
-        client.options.cache.setduration(days=0)
+        cache = suds.transport.cache.FileCache(days=0)
         # Exposing `client.options.cache.clear` is not sensible since suds
         # caches only for inter-session performance. Clearing it has no
         # runtime impact on the library as the *real* cache is the client
         # object keeping parsed WSDL definitions.
+
+        auth = suds.transport.http.HttpAuthenticated(
+               username='anonymous', password='anonymous',
+               cache=cache)
+
+        # this prefetches the WSDL on library load!
+        client = suds.client.Client(BASEURL % name,
+                 transport=auth, cache=cache)
 
         class Result(tuple): # poor man's namedtuple
             def __repr__(self):

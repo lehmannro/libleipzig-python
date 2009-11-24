@@ -14,7 +14,7 @@ def test_baseform_schlange():
     assert singular == ("Schlange", "N")
     assert singular[0] == singular.Grundform
     assert singular[1] == singular.Wortart
-    
+
     assert plural == ("Schlangen", "S")
 
 def test_encoding():

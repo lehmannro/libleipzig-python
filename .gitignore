@@ -2,3 +2,5 @@ MANIFEST
 build/
 dist/
 manual.html
+.test/
+pip-log.txt

@@ -1,7 +1,7 @@
 # Copyright (C) 2009 Robert Lehmann
 
 from nose.tools import assert_raises
-from libleipzig import Baseform
+from libleipzig import Baseform, Thesaurus
 
 def test_doc():
     lines = Baseform.__doc__.splitlines()
@@ -17,3 +17,8 @@ def test_args():
 def test_wrapped():
     assert Baseform.__name__ == 'Baseform'
     assert Baseform.__module__ == 'libleipzig.protocol'
+
+def test_prefetch():
+    Thesaurus._client = None
+    Thesaurus.prefetch()
+    assert hasattr(Thesaurus, '_client')

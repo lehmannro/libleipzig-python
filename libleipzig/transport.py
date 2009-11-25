@@ -24,10 +24,6 @@ def service(*results):
                username='anonymous', password='anonymous',
                cache=cache)
 
-        # this prefetches the WSDL on library load!
-        client = suds.client.Client(BASEURL % name,
-                 transport=auth, cache=cache)
-
         class Result(tuple): # poor man's namedtuple
             def __repr__(self):
                 return "(%s)" % ", ".join("%s: %s" % d for d in zip(results, self))
@@ -35,8 +31,17 @@ def service(*results):
             setattr(Result, typ, property(operator.itemgetter(n)))
         Result.__name__ = "%sResult" % name
 
+        def get_client(func, name):
+            if not hasattr(func, '_client'):
+                func._client = suds.client.Client(BASEURL % name,
+                               transport=auth, cache=cache)
+            return func._client
+
         @functools.wraps(f)
         def func(word, *vectors):
+            # this prefetches the WSDL on library load!
+            client = get_client(func, name)
+
             if len(args) - 1 != len(vectors):
                 raise TypeError(
                     "service `%s' got %d arguments, expects %d (%s)" %
@@ -72,6 +77,7 @@ def service(*results):
         func._returns = results
         func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
             ", ".join(results)) + func._doc
+        func.prefetch = lambda: get_client(func, name)
         services[name] = func
 
         return func

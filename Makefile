@@ -17,7 +17,7 @@ test: $(TESTDIR)/bin/nosetests
 virtualenv: $(TESTDIR)
 $(TESTDIR):
 	@echo "Setting up virtual environment.."
-	virtualenv --clear --distribute "$(TESTDIR)"
+	virtualenv --clear --no-site-packages --distribute "$(TESTDIR)"
 	@echo "Installing dependencies.."
 	$(TESTDIR)/bin/pip install -U suds
 	@echo "Installing libleipzig-python.."

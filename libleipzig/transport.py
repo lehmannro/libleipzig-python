@@ -13,16 +13,13 @@ def service(*results):
         name = f.__name__
         args, _, _, _ = inspect.getargspec(f)
 
-        # cache indefinitely as the service declarations seldom change
-        cache = suds.transport.cache.FileCache(days=0)
         # Exposing `client.options.cache.clear` is not sensible since suds
         # caches only for inter-session performance. Clearing it has no
         # runtime impact on the library as the *real* cache is the client
         # object keeping parsed WSDL definitions.
 
         auth = suds.transport.http.HttpAuthenticated(
-               username='anonymous', password='anonymous',
-               cache=cache)
+               username='anonymous', password='anonymous')
 
         class Result(tuple): # poor man's namedtuple
             def __repr__(self):
@@ -33,8 +30,9 @@ def service(*results):
 
         def get_client(func, name):
             if not hasattr(func, '_client'):
-                func._client = suds.client.Client(BASEURL % name,
-                               transport=auth, cache=cache)
+                func._client = client = suds.client.Client(BASEURL % name,
+                        transport=auth)
+                client.options.cache.setduration(days=0)
             return func._client
 
         @functools.wraps(f)

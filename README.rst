@@ -28,7 +28,7 @@ Example
 >>> from libleipzig import * # might take some time initially
 >>> r = Baseform("Schlangen")
 >>> r
-[(Grundform: Schlange, Wortart: N), (Grundform: Schlangen, Wortart: S)]
+[(Grundform: u'Schlange', Wortart: u'N'), (Grundform: u'Schlangen', Wortart: u'S')]
 >>> r[0].Grundform
 u'Schlange'
 >>> help(Baseform) # doctest: +NORMALIZE_WHITESPACE

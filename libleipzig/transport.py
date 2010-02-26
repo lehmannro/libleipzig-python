@@ -23,7 +23,8 @@ def service(*results):
 
         class Result(tuple): # poor man's namedtuple
             def __repr__(self):
-                return "(%s)" % ", ".join("%s: %s" % d for d in zip(results, self))
+                return "(%s)" % ", ".join(
+                        "%s: %s" % d for d in zip(results, map(repr, self)))
         for n, typ in enumerate(results):
             setattr(Result, typ, property(operator.itemgetter(n)))
         Result.__name__ = "%sResult" % name

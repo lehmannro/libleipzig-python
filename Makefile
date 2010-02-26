@@ -32,7 +32,7 @@ clean:
 	find . -name '*.py[co]' -exec rm -f {} ';'
 	rm -rf build/ dist/
 	rm -f MANIFEST manual.html
-	rm -rf .test/
+	rm -rf "$(TESTDIR)"
 
 distclean: clean
 	rm -rf /tmp/suds/

@@ -44,6 +44,6 @@ Dependencies
 ------------
 
 - Python 2.5 or later 2.x releases
-- suds_ 0.3.7 beta (r537) or later
+- suds_ 0.3.9 or later
 
 .. _suds: https://fedorahosted.org/suds/#Resources

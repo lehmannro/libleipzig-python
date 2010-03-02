@@ -20,5 +20,6 @@ def test_wrapped():
 
 def test_prefetch():
     Thesaurus._client = None
+    del Thesaurus._client
     Thesaurus.prefetch()
     assert hasattr(Thesaurus, '_client')

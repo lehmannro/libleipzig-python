@@ -24,3 +24,7 @@ def test_encoding():
 
 def test_empty():
     assert Baseform(u"foobarbaz") == []
+
+def test_repr():
+    printable = repr(Baseform(u"schlängeln"))
+    assert printable == r"[(Grundform: u'schl\xe4ngeln', Wortart: u'V')]"

@@ -33,7 +33,7 @@ Example
 u'Schlange'
 >>> help(Baseform) # doctest: +NORMALIZE_WHITESPACE
 Help on function Baseform in module libleipzig.protocol:
-Baseform(word, *vectors)
+Baseform(*vectors)
     Baseform(Wort) -> Grundform, Wortart
         Return the lemmatized (base) form.
 >>>

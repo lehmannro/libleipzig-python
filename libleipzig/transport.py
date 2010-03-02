@@ -37,20 +37,20 @@ def service(*results):
             return func._client
 
         @functools.wraps(f)
-        def func(word, *vectors):
+        def func(*vectors):
             # this prefetches the WSDL on library load!
             client = get_client(func, name)
 
-            if len(args) - 1 != len(vectors):
+            if len(args) != len(vectors):
                 raise TypeError(
                     "service `%s' got %d arguments, expects %d (%s)" %
-                    (name, len(vectors)+1, len(args), ", ".join(args)))
+                    (name, len(vectors), len(args), ", ".join(args)))
 
             # assemble query to the SOAP service
             request = client.factory.create('RequestParameter')
             request.corpus = 'de'
 
-            for key, value in zip(args, (word,) + vectors):
+            for key, value in zip(args, vectors):
                 vector = client.factory.create('ns0:DataVector')
 
                 key_row = client.factory.create('ns0:dataRow')

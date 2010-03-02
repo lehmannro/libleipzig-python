@@ -26,7 +26,7 @@ Example
 -------
 
 >>> from libleipzig import * # might take some time initially
->>> r = Baseform("Schlangen")
+>>> r = Baseform(u"Schlangen")
 >>> r
 [(Grundform: u'Schlange', Wortart: u'N'), (Grundform: u'Schlangen', Wortart: u'S')]
 >>> r[0].Grundform

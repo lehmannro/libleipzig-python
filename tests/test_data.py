@@ -7,20 +7,20 @@ from nose.tools import assert_raises
 from libleipzig import *
 
 def test_baseform_schlange():
-    result = Baseform("Schlangen")
+    result = Baseform(u"Schlangen")
     assert len(result) == 2
     singular, plural = result
 
-    assert singular == ("Schlange", "N")
+    assert singular == (u"Schlange", u"N")
     assert singular[0] == singular.Grundform
     assert singular[1] == singular.Wortart
 
-    assert plural == ("Schlangen", "S")
+    assert plural == (u"Schlangen", u"S")
 
 def test_encoding():
     # encoding request and result
-    assert Baseform(u"schlängeln") == [(u"schlängeln", "V")]
+    assert Baseform(u"schlängeln") == [(u"schlängeln", u"V")]
     assert Baseform(u"€") == [] # do not blow up at least
 
 def test_empty():
-    assert Baseform("foobarbaz") == []
+    assert Baseform(u"foobarbaz") == []

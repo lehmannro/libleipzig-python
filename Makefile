@@ -38,9 +38,8 @@ manual.html: README.rst libleipzig/protocol.py gendocs
 
 clean:
 	find . -name '*.py[co]' -exec rm -f {} ';'
-	rm -rf build/ dist/
-	rm -f manual.html
-	rm -rf "$(TESTDIR)"
+	rm -rf build/ dist/ "$(TESTDIR)"
+	rm -f MANIFEST manual.html
 
 distclean: clean
 	rm -rf /tmp/suds/

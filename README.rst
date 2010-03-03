@@ -48,3 +48,12 @@ Dependencies
 - suds_ 0.3.9 or later
 
 .. _suds: https://fedorahosted.org/suds/#Resources
+
+Changelog
+---------
+
+1.1
+  * Bumped suds version to 0.3.9.
+  * Fixed numerous unicode issues and pointed out potential pitfalls.
+  * Fixed caching to be persistent but lazy.
+  * Upgraded virtual environment to incremental build steps.

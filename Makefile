@@ -4,7 +4,7 @@ VIRTUALENV = virtualenv
 PYVER = $(shell $(PYTHON) -V 2>&1 | grep -o '[0-9].[0-9]')
 SOURCES = $(wildcard libleipzig/*.py) $(wildcard tests/*.py) \
           README.rst setup.py
-.PHONY: install build dist test clean distclean virtualenv
+.PHONY: install build dist test clean distclean virtualenv docs
 
 test: virtualenv
 	@cd "$(TESTDIR)"; PYTHONPATH= \
@@ -32,7 +32,8 @@ build:
 dist: docs
 	$(PYTHON) setup.py sdist
 
-docs: README.rst libleipzig/protocol.py gendocs
+docs: manual.html
+manual.html: README.rst libleipzig/protocol.py gendocs
 	./gendocs | rst2html - manual.html
 
 clean:

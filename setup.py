@@ -15,6 +15,7 @@ setup(name='libleipzig',
       license="GPLv3",
       packages=['libleipzig', 'libleipzig.test'],
       package_dir={'libleipzig.test': 'tests'},
+      data_files=["README.rst", "manual.html"],
       classifiers=[
           'Environment :: Web Environment',
           'License :: OSI Approved :: GNU General Public License (GPL)',

@@ -29,7 +29,7 @@ install:
 build:
 	$(PYTHON) setup.py build
 
-dist:
+dist: docs
 	$(PYTHON) setup.py sdist
 
 docs: README.rst libleipzig/protocol.py gendocs

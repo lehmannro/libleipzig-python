@@ -57,3 +57,4 @@ Changelog
   * Fixed numerous unicode issues and pointed out potential pitfalls.
   * Fixed caching to be persistent but lazy.
   * Upgraded virtual environment to incremental build steps.
+  * Pushed tests into installed package.

@@ -1,4 +1,4 @@
-# Copyright (C) 2009 Robert Lehmann
+# Copyright (C) 2009, 2010 Robert Lehmann
 #
 # SOAP description data
 # cf. http://wortschatz.uni-leipzig.de/axis/servlet/ServiceOverviewServlet

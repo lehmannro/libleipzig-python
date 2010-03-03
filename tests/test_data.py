@@ -1,4 +1,4 @@
-# Copyright (C) 2009 Robert Lehmann
+# Copyright (C) 2009, 2010 Robert Lehmann
 # encoding: utf-8
 #
 # extremely fragile tests due to their dependency on an external database

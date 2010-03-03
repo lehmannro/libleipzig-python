@@ -1,4 +1,4 @@
-# Copyright (C) 2009 Robert Lehmann
+# Copyright (C) 2009, 2010 Robert Lehmann
 
 from nose.tools import assert_raises
 from libleipzig import Baseform, Thesaurus

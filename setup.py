@@ -1,4 +1,4 @@
-# Copyright (C) 2009 Robert Lehmann
+# Copyright (C) 2009, 2010 Robert Lehmann
 
 from distutils.core import setup
 import libleipzig

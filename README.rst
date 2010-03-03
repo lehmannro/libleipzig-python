@@ -14,8 +14,8 @@ provided `free of charge`_ for private or scientific purposes.
 
 .. contents::
 
-.. attention:: libleipzig prefetches__ *all* service interfaces on initial load.
-   This process requires an Internet connection.
+.. attention:: libleipzig prefetches__ *all* service interfaces on initial
+   load. This process requires an Internet connection.
 
    Subsequent ``import``\ s use indefinitely cached definitions (WSDL files).
 

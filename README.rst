@@ -94,6 +94,18 @@ calls::
 >>> libleipzig.Cooccurrences("programming", 0, 1, corpus="en")'
 [(Wort: u'programming', Kookkurrenz: u'language', Signifikanz: u'4152')]
 
+Troubleshooting
+---------------
+
+For unauthenticated service calls the server might raise errors such as the
+following::
+
+    suds.WebFault: Server raised fault:
+    'java.lang.Exception: Communication link failure,
+                          message from server: "Server shutdown in progress"'
+
+This is the API's way to impose rate limits on anonymous users.
+
 Changelog
 ---------
 

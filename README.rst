@@ -131,7 +131,9 @@ Changelog
 ---------
 
 1.2
+  * Added authentication support.
   * Added different corpora to services.
+  * Exposed ``WebFault`` error condition.
   * Extended service parameter by generic options.
 
 1.1

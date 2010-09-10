@@ -29,7 +29,11 @@ def service(*results):
             setattr(Result, typ, property(operator.itemgetter(n)))
         Result.__name__ = "%sResult" % name
 
-        def get_client(func, name):
+        def get_client(func, name, cred=None):
+            if cred:
+                return suds.client.Client(BASEURL % name,
+                    transport=suds.transport.http.HttpAuthenticated(
+                        username=cred[0], password=cred[1]))
             if not hasattr(func, '_client'):
                 func._client = client = suds.client.Client(BASEURL % name,
                         transport=auth)
@@ -39,7 +43,7 @@ def service(*results):
         @functools.wraps(f)
         def func(*vectors, **options):
             # this prefetches the WSDL on library load!
-            client = get_client(func, name)
+            client = get_client(func, name, options.pop('auth', None))
 
             if len(args) != len(vectors):
                 raise TypeError(

@@ -3,7 +3,9 @@
 #
 # extremely fragile tests due to their dependency on an external database
 
+import os
 from nose.tools import assert_raises
+from nose.exc import SkipTest
 from libleipzig import *
 
 def test_baseform_schlange():
@@ -34,3 +36,17 @@ def test_other_corpus():
 
 def test_invalid_corpus():
     assert_raises(WebFault, Baseform, u"foobar", corpus='invalid')
+
+def test_auth():
+    assert RightNeighbours(u"Schlange", 1, auth=("anonymous", "anonymous"))
+
+def test_invalid_auth():
+    assert_raises(WebFault, RightNeighbours, u"Schlange", 1,
+        auth=("invalid", "auth"))
+
+def test_level_2():
+    # export LIBLEIPZIGAUTH=username:password
+    if 'LIBLEIPZIGAUTH' not in os.environ:
+        raise SkipTest
+    auth = os.environ['LIBLEIPZIGAUTH'].split(":")
+    assert RightNeighbours(u"Schlange", 1, auth=auth)

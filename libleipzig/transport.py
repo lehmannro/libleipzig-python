@@ -37,7 +37,7 @@ def service(*results):
             return func._client
 
         @functools.wraps(f)
-        def func(*vectors):
+        def func(*vectors, **options):
             # this prefetches the WSDL on library load!
             client = get_client(func, name)
 
@@ -49,6 +49,10 @@ def service(*results):
             # assemble query to the SOAP service
             request = client.factory.create('RequestParameter')
             request.corpus = 'de'
+
+            if options:
+                raise TypeError("%s() got an unexpected option '%s'" %
+                    (name, iter(options).next()))
 
             for key, value in zip(args, vectors):
                 vector = client.factory.create('ns0:DataVector')

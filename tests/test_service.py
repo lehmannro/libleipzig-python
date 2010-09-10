@@ -23,3 +23,6 @@ def test_prefetch():
     del Thesaurus._client
     Thesaurus.prefetch()
     assert hasattr(Thesaurus, '_client')
+
+def test_options():
+    assert_raises(TypeError, Baseform, foo=1)

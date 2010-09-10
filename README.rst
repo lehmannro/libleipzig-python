@@ -34,7 +34,7 @@ Example
 u'Schlange'
 >>> help(Baseform) # doctest: +NORMALIZE_WHITESPACE
 Help on function Baseform in module libleipzig.protocol:
-Baseform(*vectors)
+Baseform(*vectors, **options)
     Baseform(Wort) -> Grundform, Wortart
         Return the lemmatized (base) form.
 >>>
@@ -49,8 +49,20 @@ Dependencies
 
 .. _suds: https://fedorahosted.org/suds/#Resources
 
+Service calls
+-------------
+
+Every service calls takes exactly its request parameters (as defined in the
+`list of webservices`__) as positional or keyword arguments and accepts a
+number of generic options.
+
+__ http://wortschatz.uni-leipzig.de/axis/servlet/ServiceOverviewServlet
+
 Changelog
 ---------
+
+1.2
+  * Extended service parameter by generic options.
 
 1.1
   * Bumped suds version to 0.3.9.

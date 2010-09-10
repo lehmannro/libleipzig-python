@@ -90,7 +90,7 @@ Note that these collections are not as comprehensive as the German corpus and
 thus might only provide selected services.  Most often these are the simple
 text processing calls such as ``RightNeighbours``.  You can use these corpora
 in libleipzig by supplying the ``corpus`` parameter to any of the service
-calls::
+calls:
 
 >>> import libleipzig
 >>> libleipzig.Cooccurrences("programming", 0, 1, corpus="en")

@@ -55,7 +55,14 @@ Service calls
 
 Every service calls takes exactly its request parameters (as defined in the
 `list of webservices`__) as positional or keyword arguments and accepts a
-number of generic options.
+number of generic options:
+
+auth
+  Authentication credentials;  a tuple of (username, password).
+  See `Authentication`_.
+corpus
+  Language corpus;  a string identifier.
+  See `Corpora`_.
 
 __ http://wortschatz.uni-leipzig.de/axis/servlet/ServiceOverviewServlet
 
@@ -115,7 +122,7 @@ following::
                           message from server: "Server shutdown in progress"'
 
 This is the API's way to impose rate limits on anonymous users.  See
-`Authentication` for a way to avoid this issue.
+`Authentication`_ for a way to avoid this issue.
 
 Changelog
 ---------

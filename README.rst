@@ -112,7 +112,11 @@ supplying authentication credentials to a service call::
     Baseform("programming", auth=("username", "password"))
 
 Public service calls can be accessed with the combination anonymous/anonymous,
-which is also the default.
+which is also the default.  If you wish to persist your credentials among
+several calls (to the same service) you can save them in the service::
+
+    Baseform.set_credentials("username", "password")
+    Baseform("programming")
 
 Troubleshooting
 ---------------
@@ -131,6 +135,7 @@ Changelog
 ---------
 
 1.2
+  * Added persistable authentication support.
   * Added authentication support.
   * Added different corpora to services.
   * Exposed ``WebFault`` error condition.

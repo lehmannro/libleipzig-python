@@ -85,6 +85,10 @@ def service(*results):
         func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
             ", ".join(results)) + func._doc
         func.prefetch = lambda: get_client(func, name)
+        func.set_credentials = lambda username, password: (
+                get_client(func, name).set_options(
+                    transport=suds.transport.http.HttpAuthenticated(
+                        username=username, password=password)))
         services[name] = func
 
         return func

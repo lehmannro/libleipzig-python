@@ -50,3 +50,20 @@ def test_level_2():
         raise SkipTest
     auth = os.environ['LIBLEIPZIGAUTH'].split(":")
     assert RightNeighbours(u"Schlange", 1, auth=auth)
+
+def test_auth_setting_level_2():
+    # export LIBLEIPZIGAUTH=username:password
+    if 'LIBLEIPZIGAUTH' not in os.environ:
+        raise SkipTest
+    auth = os.environ['LIBLEIPZIGAUTH'].split(":")
+    LeftNeighbours.set_credentials(*auth)
+    assert LeftNeighbours(u"Schlange", 1)
+
+
+def test_auth_setting_invalid():
+    Synonyms.set_credentials("invalid", "auth")
+    assert_raises(WebFault, Synonyms, u"Schlange", 1)
+    # persists along multiple calls
+    assert_raises(WebFault, Synonyms, u"Schlange", 1)
+    # others are unaffected
+    test_baseform_schlange()

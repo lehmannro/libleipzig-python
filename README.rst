@@ -118,6 +118,10 @@ several calls (to the same service) you can save them in the service::
     Baseform.set_credentials("username", "password")
     Baseform("programming")
 
+You should only use the former syntax if you care about thread-safety or do not
+want to expose your credentials through the service's transport metadata for
+all of the program's runtime.
+
 Troubleshooting
 ---------------
 

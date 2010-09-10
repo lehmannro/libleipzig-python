@@ -48,7 +48,7 @@ def service(*results):
 
             # assemble query to the SOAP service
             request = client.factory.create('RequestParameter')
-            request.corpus = 'de'
+            request.corpus = options.pop('corpus', 'de')
 
             if options:
                 raise TypeError("%s() got an unexpected option '%s'" %

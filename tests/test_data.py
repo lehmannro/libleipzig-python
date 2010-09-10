@@ -28,3 +28,9 @@ def test_empty():
 def test_repr():
     printable = repr(Baseform(u"schlängeln"))
     assert printable == r"[(Grundform: u'schl\xe4ngeln', Wortart: u'V')]"
+
+def test_other_corpus():
+    assert RightNeighbours(u"snake", 1, corpus='en')
+
+def test_invalid_corpus():
+    assert_raises(WebFault, Baseform, u"foobar", corpus='invalid')

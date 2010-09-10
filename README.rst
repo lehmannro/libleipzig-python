@@ -58,10 +58,47 @@ number of generic options.
 
 __ http://wortschatz.uni-leipzig.de/axis/servlet/ServiceOverviewServlet
 
+Corpora
+-------
+
+The project collects corpora in a variety of languages, German (*de*) only
+being the largest one and thus the default.  According to the reference
+implementation the following corpora are available (those marked with asterisks
+actually worked as of the time of writing):
+
+* de*
+* en*
+* es*
+* fr*
+* fr05*
+* fr05_100K
+* fr05_1M
+* fr05_300K
+* fr05_3M*
+* it*
+* it100K
+* it300K
+* it10M
+* it3M
+* nl*
+* nl100K
+* nl300K
+* nl1M
+
+Note that these collections are not as comprehensive as the German corpus and
+thus might only provide selected services.  Most often these are the simple
+text processing calls such as ``RightNeighbours``.  You can use these corpora
+in libleipzig by supplying the ``corpus`` parameter to any of the service
+calls::
+
+>>> libleipzig.Cooccurrences("programming", 0, 1, corpus="en")'
+[(Wort: u'programming', Kookkurrenz: u'language', Signifikanz: u'4152')]
+
 Changelog
 ---------
 
 1.2
+  * Added different corpora to services.
   * Extended service parameter by generic options.
 
 1.1

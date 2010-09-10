@@ -74,7 +74,7 @@ being the largest one and thus the default.  According to the reference
 implementation the following corpora are available (those marked with asterisks
 actually worked as of the time of writing):
 
-* de*
+* de* (default)
 * en*
 * es*
 * fr*
@@ -110,6 +110,9 @@ You can increase your rate limit or gain access to private services by
 supplying authentication credentials to a service call::
 
     Baseform("programming", auth=("username", "password"))
+
+Public service calls can be accessed with the combination anonymous/anonymous,
+which is also the default.
 
 Troubleshooting
 ---------------

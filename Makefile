@@ -7,8 +7,9 @@ SOURCES = $(wildcard libleipzig/*.py) $(wildcard tests/*.py) \
 .PHONY: install build dist test clean distclean virtualenv docs
 
 test: virtualenv
-	@cd "$(TESTDIR)"; PYTHONPATH= \
-	./bin/nosetests --with-doctest --doctest-extension=rst --detailed-errors libleipzig.test ../README.rst
+	@cd $(TESTDIR); PYTHONPATH= \
+	./bin/nosetests --with-doctest --doctest-extension=rst --detailed-errors \
+	libleipzig.test ../README.rst
 
 virtualenv: $(TESTDIR) \
 	$(TESTDIR)/lib/python$(PYVER)/site-packages/suds \

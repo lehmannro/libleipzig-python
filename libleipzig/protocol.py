@@ -29,17 +29,17 @@ def LeftNeighbours(Wort, Limit): """
     """
 @service('Anzahl', 'Frequenzklasse')
 def Frequencies(Wort): """
-    Return the frequency and frequency class. Frequency classes are computed
-    in relation to the most frequent word in the corpus. The higher the class,
+    Return the frequency and frequency class.  Frequency classes are computed
+    in relation to the most frequent word in the corpus.  The higher the class,
     the rarer the word.
     """
 @service('Synonym')
 def Synonyms(Wort, Limit): """
-    Return synonyms. In other words, this is a thesaurus.
+    Return synonyms.  In other words, this is a thesaurus.
     """
 @service('Synonym')
 def Thesaurus(Wort, Limit): """
-    Return synonyms (like the `Synonyms` service). However, this lemmatizes
+    Return synonyms (like the `Synonyms` service).  However, this lemmatizes
     the input word first and thus returns more synonyms.
     """
 @service('Form')
@@ -48,23 +48,23 @@ def Wordforms(Word, Limit): """
     """
 @service('Wort', 'Verwandter', 'Signifikanz')
 def Similarity(Wort, Limit): """
-    Return automatically computed contextually similar words of the input
-    word. Such similar words may be antonyms, hyperonyms, synonyms, cohyponyms
-    or other. Note that due to the huge amount of data any query to this
-    service may take a long time.
+    Return automatically computed contextually similar words of the input word.
+    Such similar words may be antonyms, hyperonyms, synonyms, cohyponyms or
+    other.  Note that due to the huge amount of data any query to this service
+    may take a long time.
     """
 @service('Kollokation', 'Wortart', 'Wort')
 def LeftCollocationFinder(Wort, Wortart, Limit): """
-    Attempt to find linguistic collocations that occur left to the word. The
+    Attempt to find linguistic collocations that occur left to the word.  The
     `Wortart` parameter shall be either A, V, N, or S meaning adjective, verb,
-    noun and stopword, respectively. The parameter restricts the type of words
+    noun and stopword, respectively.  The parameter restricts the type of words
     found.
     """
 @service('Wort', 'Kollokation', 'Wortart')
 def RightCollocationFinder(Wort, Wortart, Limit): """
-    Attempt to find linguistic collocations that occur right to the word. The
+    Attempt to find linguistic collocations that occur right to the word.  The
     `Wortart` parameter shall be either A, V, N, or S meaning adjective, verb,
-    noun and stopword, respectively. The parameter restricts the type of words
+    noun and stopword, respectively.  The parameter restricts the type of words
     found.
     """
 @service('Sachgebiet')
@@ -73,6 +73,6 @@ def Sachgebiet(Wort): """
     """
 @service('Wort')
 def Kreuzwortraetsel(Wort, Wortlaenge, Limit): """
-    Return words that match the pattern `Wort`. The percentage sign (%) acts
+    Return words that match the pattern `Wort`.  The percentage sign (%) acts
     as a wildmask.
     """

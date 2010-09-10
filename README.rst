@@ -7,7 +7,8 @@
 Wortschatz** is a German database of text corpora and can be utilized to
 analyze and contextualize words in the thesaurus.  *libleipzig* currently
 supports all public service calls.  These do not require authentication and are
-provided `free of charge`_ for private or scientific purposes.
+provided `free of charge`_ for private or scientific purposes (even though you
+can supply Level-2 credentials for rate limiting purposes).
 
 .. _Deutscher Wortschatz: http://wortschatz.uni-leipzig.de/
 .. _free of charge: http://wortschatz.uni-leipzig.de/use.html
@@ -95,6 +96,14 @@ calls::
 >>> libleipzig.Cooccurrences("programming", 0, 1, corpus="en")
 [(Wort: u'programming', Kookkurrenz: u'language', Signifikanz: u'4152')]
 
+Authentication
+--------------
+
+You can increase your rate limit or gain access to private services by
+supplying authentication credentials to a service call::
+
+    Baseform("programming", auth=("username", "password"))
+
 Troubleshooting
 ---------------
 
@@ -105,7 +114,8 @@ following::
     'java.lang.Exception: Communication link failure,
                           message from server: "Server shutdown in progress"'
 
-This is the API's way to impose rate limits on anonymous users.
+This is the API's way to impose rate limits on anonymous users.  See
+`Authentication` for a way to avoid this issue.
 
 Changelog
 ---------

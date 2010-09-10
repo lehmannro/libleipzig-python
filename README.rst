@@ -91,7 +91,8 @@ text processing calls such as ``RightNeighbours``.  You can use these corpora
 in libleipzig by supplying the ``corpus`` parameter to any of the service
 calls::
 
->>> libleipzig.Cooccurrences("programming", 0, 1, corpus="en")'
+>>> import libleipzig
+>>> libleipzig.Cooccurrences("programming", 0, 1, corpus="en")
 [(Wort: u'programming', Kookkurrenz: u'language', Signifikanz: u'4152')]
 
 Troubleshooting

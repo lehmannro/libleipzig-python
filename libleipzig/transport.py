@@ -60,14 +60,7 @@ def service(*results):
 
             for key, value in zip(args, vectors):
                 vector = client.factory.create('ns0:DataVector')
-
-                key_row = client.factory.create('ns0:dataRow')
-                key_row.set(key)
-                vector.dataRow.append(key_row)
-
-                value_row = client.factory.create('ns0:dataRow')
-                value_row.set(value)
-                vector.dataRow.append(value_row)
+                vector.dataRow = [key, value]
 
                 request.parameters.dataVectors.append(vector)
 

@@ -138,6 +138,8 @@ This is the API's way to impose rate limits on anonymous users.  See
 Changelog
 ---------
 
+1.3
+  * Fixed compatibility issues with suds 0.4.
 1.2
   * Added persistable authentication support.
   * Added authentication support.

@@ -66,6 +66,9 @@ corpus
 
 __ http://wortschatz.uni-leipzig.de/axis/servlet/ServiceOverviewServlet
 
+In case of a remote error all services will throw a `suds.WebFault` (which can
+be readily imported from ``libleipzig``).
+
 Corpora
 -------
 

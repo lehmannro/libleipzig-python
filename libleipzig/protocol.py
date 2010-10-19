@@ -33,7 +33,7 @@ def Frequencies(Wort): """
     in relation to the most frequent word in the corpus.  The higher the class,
     the rarer the word.
     """
-@service('Synonym')
+@service('Synonym', 'Wortart')
 def Synonyms(Wort, Limit): """
     Return synonyms.  In other words, this is a thesaurus.
     """

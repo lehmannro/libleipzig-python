@@ -144,6 +144,7 @@ Changelog
 ---------
 
 1.3
+  * Added commandline script ``wortschatz`` for ad-hoc access.
   * Jumped to setuptools.
   * Fixed missing return values in services *Sentences* and *Synonyms*.
 1.2.1

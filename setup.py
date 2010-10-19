@@ -18,6 +18,7 @@ setup(name='libleipzig',
       packages=['libleipzig', 'libleipzig.test'],
       package_dir={'libleipzig.test': "tests"},
       package_data={'libleipzig': ["README.rst", "manual.html"]},
+      entry_points={'console_scripts': ['wortschatz = libleipzig.main:main']},
       zip_safe=True,
       classifiers=[
           'Environment :: Web Environment',

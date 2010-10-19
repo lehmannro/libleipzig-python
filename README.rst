@@ -46,8 +46,10 @@ Dependencies
 ------------
 
 - Python 2.5 or later 2.x releases
+- Setuptools_
 - suds_ 0.3.9 or later
 
+.. _Setuptools: http://packages.python.org/distribute/
 .. _suds: https://fedorahosted.org/suds/#Resources
 
 Service calls
@@ -142,6 +144,8 @@ Changelog
 ---------
 
 1.3
+  * Jumped to setuptools.
+1.2.1
   * Fixed compatibility issues with suds 0.4.
 1.2
   * Added persistable authentication support.

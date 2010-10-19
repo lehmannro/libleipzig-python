@@ -13,7 +13,7 @@ def Baseform(Wort): """
 def Cooccurrences(Wort, Mindestsignifikanz, Limit): """
     Return statistically significant co-occurrences.
     """
-@service('Satz')
+@service('Nummer', 'Satz')
 def Sentences(Wort, Limit): """
     Return sample sentences containing the input word.
     """

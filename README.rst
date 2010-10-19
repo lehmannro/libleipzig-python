@@ -140,6 +140,21 @@ following::
 This is the API's way to impose rate limits on anonymous users.  See
 `Authentication`_ for a way to avoid this issue.
 
+Command-line interface
+----------------------
+
+libleipzig provides a commandline tool called ``wortschatz`` which allows a
+thin layer upon the programmatic API in an ad-hoc fashion.  It takes the
+desired service as its first argument followed by the service's arguments.
+
+The results of the service call are printed in separate lines with the fields
+separated by commas (use ``--delimiter`` to modify that behaviour).  Use
+``--schema`` to obtain the service's result columns.
+
+If you called the service with the wrong number or arguments the program will
+terminate with exit code 1.  If the remote server reported failure (eg. wrong
+credentials) the program terminates with exit code 2.
+
 Changelog
 ---------
 

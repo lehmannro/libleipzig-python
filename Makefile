@@ -1,28 +1,8 @@
-TESTDIR = ./.test
 PYTHON = python
-VIRTUALENV = virtualenv
-PYVER = $(shell $(PYTHON) -V 2>&1 | grep -o '[0-9].[0-9]')
-SOURCES = $(wildcard libleipzig/*.py) $(wildcard tests/*.py) \
-          README.rst setup.py
-.PHONY: install build dist test clean distclean virtualenv docs
+.PHONY: install build dist test clean distclean docs
 
-test: virtualenv
-	@cd $(TESTDIR); PYTHONPATH= \
-	./bin/nosetests --with-doctest --doctest-extension=rst --detailed-errors \
-	libleipzig.test ../README.rst
-
-virtualenv: $(TESTDIR) \
-	$(TESTDIR)/lib/python$(PYVER)/site-packages/suds \
-	$(TESTDIR)/lib/python$(PYVER)/site-packages/libleipzig \
-	$(TESTDIR)/bin/nosetests
-$(TESTDIR):
-	$(VIRTUALENV) --clear --no-site-packages --distribute "$(TESTDIR)"
-$(TESTDIR)/lib/python$(PYVER)/site-packages/suds:
-	$(TESTDIR)/bin/pip -q install suds
-$(TESTDIR)/lib/python$(PYVER)/site-packages/libleipzig: $(SOURCES)
-	$(TESTDIR)/bin/python setup.py --quiet install
-$(TESTDIR)/bin/nosetests:
-	$(TESTDIR)/bin/pip -q install nose
+test:
+	$(PYTHON) setup.py --quiet test --verbose
 
 install:
 	$(PYTHON) setup.py install
@@ -39,7 +19,8 @@ manual.html: README.rst libleipzig/protocol.py gendocs
 
 clean:
 	find . -name '*.py[co]' -exec rm -f {} ';'
-	rm -rf build/ dist/ "$(TESTDIR)"
+	rm -rf build/ dist/ libleipzig.egg-info/
+	rm -rf suds-*.egg/ nose-*.egg/
 	rm -f MANIFEST manual.html
 
 distclean: clean

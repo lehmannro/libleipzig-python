@@ -145,6 +145,7 @@ Changelog
 
 1.3
   * Jumped to setuptools.
+  * Fixed missing return values in services *Sentences* and *Synonyms*.
 1.2.1
   * Fixed compatibility issues with suds 0.4.
 1.2

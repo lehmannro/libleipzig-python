@@ -17,7 +17,10 @@ parser.add_option("-v", "--verbose", action='store_true',
 def main():
     import sys
     options, args = parser.parse_args()
-    if not args or args[0] not in services:
+    if not args:
+        parser.print_help()
+        return 1
+    if args[0] not in services:
         print >>sys.stderr, "unknown service"
         return 1
     service, args = services[args[0]], args[1:]

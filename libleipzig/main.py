@@ -12,7 +12,7 @@ parser.add_option("-u", "--user",
 parser.add_option("-p", "--password", metavar="PASS",
     help="auth with PASS (requires -u)")
 parser.add_option("-v", "--verbose", action='store_true',
-    help="enable SOAP debugging output")
+    help="enable SOAP debugging output on failure")
 
 def main():
     import sys

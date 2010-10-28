@@ -11,6 +11,8 @@ parser.add_option("-u", "--user",
     help="auth with USER (requires -p)")
 parser.add_option("-p", "--password", metavar="PASS",
     help="auth with PASS (requires -u)")
+parser.add_option("-v", "--verbose", action='store_true',
+    help="enable SOAP debugging output")
 
 def main():
     options, args = parser.parse_args()
@@ -25,6 +27,16 @@ def main():
     if options.user and options.password:
         #XXX fail if only one is given
         service.set_credentials(options.user, options.password)
+
+    import logging
+    if options.verbose:
+        h = logging.StreamHandler(sys.stderr)
+    else:
+        class NullHandler(logging.Handler):
+            def emit(self, record):
+                pass
+        h = NullHandler()
+    logging.getLogger('suds.client').addHandler(h)
 
     try:
         results = service(*args)

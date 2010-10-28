@@ -15,9 +15,11 @@ parser.add_option("-v", "--verbose", action='store_true',
     help="enable SOAP debugging output")
 
 def main():
+    import sys
     options, args = parser.parse_args()
     if not args or args[0] not in services:
-        return parser.exit(1, "unknown service")
+        print >>sys.stderr, "unknown service"
+        return 1
     service, args = services[args[0]], args[1:]
     delim = options.delimiter.decode('string-escape')
     if options.schema:
@@ -41,10 +43,10 @@ def main():
     try:
         results = service(*args)
     except TypeError, e:
-        print str(e)
+        print >>sys.stderr, str(e)
         return 1
     except WebFault, e:
-        print "remote failure: %s" % e
+        print >>sys.stderr, "remote failure: %s" % e
         return 2
     else:
         print '\n'.join(delim.join(result) for result in results)

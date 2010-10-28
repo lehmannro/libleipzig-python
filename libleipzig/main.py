@@ -36,3 +36,6 @@ def main():
         return 2
     else:
         print '\n'.join(delim.join(result) for result in results)
+
+if __name__ == '__main__':
+    main()

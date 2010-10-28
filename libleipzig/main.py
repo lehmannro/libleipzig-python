@@ -7,6 +7,10 @@ parser.add_option("-s", "--schema", action='store_true',
     help="show service's output schema and exit")
 parser.add_option("-d", "--delimiter", metavar="DELIM", default=",",
     help="use DELIM instead of comma for field delimiter")
+parser.add_option("-u", "--user",
+    help="auth with USER (requires -p)")
+parser.add_option("-p", "--password", metavar="PASS",
+    help="auth with PASS (requires -u)")
 
 def main():
     options, args = parser.parse_args()
@@ -17,6 +21,10 @@ def main():
     if options.schema:
         print delim.join(service._returns)
         return
+
+    if options.user and options.password:
+        #XXX fail if only one is given
+        service.set_credentials(options.user, options.password)
 
     try:
         results = service(*args)

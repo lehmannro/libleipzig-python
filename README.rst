@@ -148,12 +148,16 @@ thin layer upon the programmatic API in an ad-hoc fashion.  It takes the
 desired service as its first argument followed by the service's arguments.
 
 The results of the service call are printed in separate lines with the fields
-separated by commas (use ``--delimiter`` to modify that behaviour).  Use
-``--schema`` to obtain the service's result columns.
+separated by commas (use ``--delimiter`` to modify that behaviour, it
+understands patterns such as ``\t`` for TAB).  Use ``--schema`` to obtain the
+service's result columns.
 
-If you called the service with the wrong number or arguments the program will
-terminate with exit code 1.  If the remote server reported failure (eg. wrong
-credentials) the program terminates with exit code 2.
+You can supply your credentials via ``--user`` and ``--password`` for
+authenticated access.
+
+When services are called with the wrong name or wrong number of arguments the
+program will terminate with exit code 1.  If the remote server reported failure
+(eg. wrong credentials) the program terminates with exit code 2.
 
 Changelog
 ---------
@@ -162,8 +166,10 @@ Changelog
   * Added commandline script ``wortschatz`` for ad-hoc access.
   * Jumped to setuptools.
   * Fixed missing return values in services *Sentences* and *Synonyms*.
+
 1.2.1
   * Fixed compatibility issues with suds 0.4.
+
 1.2
   * Added persistable authentication support.
   * Added authentication support.

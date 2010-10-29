@@ -3,6 +3,7 @@ PYTHON = python
 
 test:
 	$(PYTHON) setup.py --quiet test --verbose
+	bash tests/test_cli.sh --verbose
 
 install:
 	$(PYTHON) setup.py install

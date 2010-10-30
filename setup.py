@@ -4,7 +4,7 @@ from setuptools import setup
 import os.path
 
 setup(name='libleipzig',
-      version='1.2.1',
+      version='1.3',
       description="wortschatz.uni-leipzig.de binding",
       long_description=open(os.path.join(os.path.dirname(__file__),
           "README.rst")).read(),

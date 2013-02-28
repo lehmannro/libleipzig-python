@@ -2,7 +2,10 @@ from libleipzig.transport import services
 from libleipzig import WebFault
 import optparse
 
-parser = optparse.OptionParser()
+parser = optparse.OptionParser(
+    epilog = "Services: %s" % ("; ".join(service._label for service
+                                          in services.itervalues()))
+        )
 parser.add_option("-s", "--schema", action='store_true',
     help="show service's output schema and exit")
 parser.add_option("-d", "--delimiter", metavar="DELIM", default=",",

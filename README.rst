@@ -150,7 +150,7 @@ service as its first argument followed by the service's parameters.
 The results of the service call are printed in separate lines with the fields
 separated by commas (use ``--delimiter`` to modify that behaviour, it
 understands patterns such as ``\t`` for TAB).  Use ``--schema`` to obtain the
-service's result columns.
+service's result columns, or, if no service is supplied, a list of services.
 
 You can supply your credentials via ``--user`` and ``--password`` for
 authenticated access.
@@ -161,6 +161,9 @@ program will terminate with exit code 1.  If the remote server reported failure
 
 Changelog
 ---------
+
+1.3.1
+  * Added service listing to ``wortschatz`` script.
 
 1.3
   * Added commandline script ``wortschatz`` for ad-hoc access.

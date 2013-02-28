@@ -22,8 +22,10 @@ TEMPLATE = """
 """
 
 for name, service in services.iteritems():
-    label = "%s(%s)" % (name, ", ".join(service._args))
-    print TEMPLATE % dict(label=label, underline="^" * len(label), name=name,
-                          returns=", ".join(service._returns),
+    label = service._label
+    print TEMPLATE % dict(label=label,
+                          underline="^" * len(label),
+                          name=name,
+                          returns=func._retlabel,
                           doc=dedent(service._doc))
 EOF

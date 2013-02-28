@@ -75,8 +75,9 @@ def service(*results):
         func._doc = func.__doc__ or ''
         func._args = args
         func._returns = results
-        func.__doc__ = "%s(%s) -> %s\n" % (name, ", ".join(args),
-            ", ".join(results)) + func._doc
+        func._label = label = "%s(%s)" % (name, ", ".join(args))
+        func._retlabel = retlabel = ", ".join(results)
+        func.__doc__ = "%s -> %s\n" % (label, retlabel) + func._doc
         func.prefetch = lambda: get_client(func, name)
         func.set_credentials = lambda username, password: (
                 get_client(func, name).set_options(
